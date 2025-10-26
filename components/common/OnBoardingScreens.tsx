@@ -4,6 +4,7 @@ import { useState, JSX } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Screen {
   id: number;
@@ -118,18 +119,18 @@ export default function OnboardingScreens(): JSX.Element {
             />
           ))}
         </div>
-        <div className="flex items-center p-1.5 bg-black text-white rounded-full overflow-hidden">
+        <div className="flex items-center   text-white rounded-full overflow-hidden">
           {!isLast ? (
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 px-8 py-3 font-medium"
+              className="flex bg-black items-center gap-2 px-8 py-3 font-medium"
             >
               Continue <ArrowRight size={16} />
             </button>
           ) : (
             <button
               onClick={handleGetStarted}
-              className="bg-lime-400 text-black font-semibold px-8 py-3 rounded-full hover:bg-lime-300 w-full"
+              className="bg-lime-400 text-black font-semibold px-8 py-3  rounded-full hover:bg-lime-300 w-full"
             >
               Get Started
             </button>
@@ -142,6 +143,8 @@ export default function OnboardingScreens(): JSX.Element {
 
 function AuthScreen(): JSX.Element {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
+
+  const router = useRouter()
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
@@ -170,7 +173,7 @@ function AuthScreen(): JSX.Element {
             {isSignUp ? "Already have an account?" : "Don't have an account?"}
           </p>
           <button
-            onClick={() => setIsSignUp(!isSignUp)}
+            onClick={() => router.push('/home')}
             className="ml-2 text-lime-300 font-semibold hover:underline"
           >
             {isSignUp ? "Sign In" : "Create one"}
