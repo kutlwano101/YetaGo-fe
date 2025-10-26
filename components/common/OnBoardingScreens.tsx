@@ -77,6 +77,16 @@ export default function OnboardingScreens(): JSX.Element {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-between p-6 text-center overflow-hidden">
       <AnimatePresence mode="wait">
+        <div className="flex gap-2 ">
+          {screens.map((_, i) => (
+            <div
+              key={i}
+              className={`w-28 h-3 rounded-full ${
+                i === index ? "bg-black" : "bg-gray-400"
+              }`}
+            />
+          ))}
+        </div>
         <motion.div
           key={index}
           initial={{ opacity: 0, x: 100 }}
@@ -109,16 +119,7 @@ export default function OnboardingScreens(): JSX.Element {
         >
           Back
         </button>
-        <div className="flex gap-2 pt-5">
-          {screens.map((_, i) => (
-            <div
-              key={i}
-              className={`w-20 h-2 rounded-full ${
-                i === index ? "bg-black" : "bg-gray-400"
-              }`}
-            />
-          ))}
-        </div>
+        
         <div className="flex items-center   text-white rounded-full overflow-hidden">
           {!isLast ? (
             <button
